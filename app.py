@@ -15,6 +15,18 @@ cors = CORS(app)
 
 tool = LangChecker()
 
+# Restful APIs
+
+
+@app.get('/init/')
+def init_worker():
+    """Initialize worker to run
+
+    Returns:
+        dict[str,str]: response
+    """
+    return {'status': 200}
+
 
 @app.post('/slide_analyze/')
 def analyze_slide():
