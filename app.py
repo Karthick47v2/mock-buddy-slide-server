@@ -13,6 +13,8 @@ from src.lang import LangChecker
 app = Flask(__name__)
 cors = CORS(app)
 
+tool = LangChecker()
+
 
 @app.post('/slide_analyze/')
 def analyze_slide():
@@ -28,8 +30,8 @@ def analyze_slide():
     info = slide.get_data()
 
     # check for spelling and grammatical errors
-    lang_tool = LangChecker(slide.get_txt())
-    suggestions = lang_tool.get_results()
+    tool.analyze_txt(slide.get_txt())
+    suggestions = tool.get_results()
 
     # delete slide after processing
     if os.path.exists(slide.filename):

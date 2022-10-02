@@ -6,20 +6,12 @@ class LangChecker:
     # pylint: disable=too-few-public-methods
     """Class for spelling and grammer checking"""
 
-    def __init__(self, corpus):
-        """Initialize checker.
-
-        Args:
-            corpus (listlist((str))): input text.
-        """
+    def __init__(self):
+        """Initialize language tool"""
         self.__lang_tool = language_tool_python.LanguageTool('en-US')
         self.__disabled_rules = ['ARROWS', 'WHITESPACE_RULE', 'EN_COMPOUNDS']
 
         self.__suggestions = []
-
-        self.__analyze_txt(corpus)
-
-        self.__lang_tool.close()
 
     def __append_error(self, rule, suggestions, idx):
         """Add mistake and it info to list.
@@ -38,7 +30,7 @@ class LangChecker:
                     "top3": rule.replacements[:3],
                     "id": idx + 1})
 
-    def __analyze_txt(self, corpus):
+    def analyze_txt(self, corpus):
         """Iterate through text and find errors.
 
         Args:
