@@ -15,9 +15,8 @@ cors = CORS(app)
 
 tool = LangChecker()
 
+
 # Restful APIs
-
-
 @app.get('/init/')
 def init_worker():
     """Initialize worker to run
